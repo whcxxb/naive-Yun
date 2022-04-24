@@ -13,6 +13,13 @@ service.interceptors.request.use(
 )
 
 //响应拦截器
-service.interceptors.response.use((res: AxiosResponse) => {
-  return res.data
-})
+service.interceptors.response.use(
+  (res: AxiosResponse) => {
+    return res.data
+  },
+  (err: unknown) => {
+    return Promise.reject(err)
+  }
+)
+
+export default service
