@@ -34,17 +34,17 @@ const router = createRouter({
 })
 
 // 路由守卫 demo
-// router.beforeEach((to, from, next) => {
-//   //获取token
-//   const user = localStorage.getItem('token')
-//   if (to.path === '/login' && user) {
-//     next({ name: 'Login' })
-//     return
-//   }
-//   if (to.path === '/' && !user) {
-//     next({ name: 'Login' })
-//     return
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  //获取token
+  const user = localStorage.getItem('token')
+  if (to.path === '/login' && user) {
+    next({ name: 'Login' })
+    return
+  }
+  if (to.path === '/' && !user) {
+    next({ name: 'Login' })
+    return
+  }
+  next()
+})
 export default router
