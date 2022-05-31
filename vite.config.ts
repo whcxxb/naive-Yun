@@ -2,8 +2,20 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'url'
 import vue from '@vitejs/plugin-vue'
 
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
+    })
+  ],
   resolve: {
     //设置别名
     alias: {
@@ -16,6 +28,6 @@ export default defineConfig({
       host: '127.0.0.1',
       port: 8080
     }
-    // 设置 https 代理  
+    // 设置 https 代理
   }
 })

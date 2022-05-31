@@ -9,7 +9,27 @@ const routes: Array<RouteRecordRaw> = [
       keepAlive: true,
       requireAuth: false
     },
-    component: () => import('@/view/login.vue')
+    component: () => import('@/view/login/login.vue')
+  },
+  {
+    path: '/forgetPassword',
+    name: 'ForgetPassword',
+    meta: {
+      title: '忘记密码',
+      keepAlive: true,
+      requireAuth: false
+    },
+    component: () => import('@/view/login/forgetPassword.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    meta: {
+      title: '注册',
+      keepAlive: true,
+      requireAuth: false
+    },
+    component: () => import('@/view/login/register.vue')
   },
   {
     path: '/',
