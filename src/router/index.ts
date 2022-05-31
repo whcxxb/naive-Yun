@@ -38,7 +38,7 @@ router.beforeEach((to, from, next) => {
   //获取token
   const user = localStorage.getItem('token')
   if (to.path === '/login' && user) {
-    next({ name: 'Login' })
+    next()
     return
   }
   if (to.path === '/' && !user) {
