@@ -6,11 +6,11 @@
         <div>一个可以游览天下の云</div>
       </div>
       <el-card class="box-card">
-        <el-form :model="formInline">
-          <el-form-item>
+        <el-form ref="ruleFormRef" class="demo-ruleForm" :rules="rules" :model="formInline">
+          <el-form-item prop="userName">
             <el-input v-model="formInline.userName" size="large" :prefix-icon="Message" placeholder="邮箱" />
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="password">
             <el-input
               v-model="formInline.password"
               size="large"
@@ -24,7 +24,9 @@
             <el-checkbox v-model="formInline.isPsw" label="记住我" />
           </el-form-item>
           <el-form-item>
-            <el-button style="margin: 0 auto; padding: 20px" color="#18a058" @click="onSubmit">🚀登录</el-button>
+            <el-button style="margin: 0 auto; padding: 20px" color="#18a058" @click="submitForm(ruleFormRef)"
+              >🚀登录</el-button
+            >
           </el-form-item>
         </el-form>
       </el-card>
@@ -37,20 +39,44 @@
 </template>
 
 <script lang="ts" setup>
+import { ElMessage } from 'element-plus'
+
 import { Unlock, Message } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import type { FormInstance, FormRules } from 'element-plus'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+const router = useRouter()
+// from表单组件
+const ruleFormRef = ref<FormInstance>()
 // 表单信息
 const formInline = reactive({
   userName: 'admin',
   password: '123',
   isPsw: false
 })
+// 验证规则
+const rules = reactive<FormRules>({
+  userName: [{ required: true, message: '邮箱不能为空', trigger: 'blur' }],
+  password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
+})
 // 登录
-const onSubmit = () => {
-  console.log('submit!')
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid, fields) => {
+    if (valid) {
+      if (formInline.userName === 'admin' && formInline.password === '123') {
+        ElMessage.success('登录成功')
+        router.replace({
+          path: '/'
+        })
+      } else {
+        ElMessage.success('错误')
+      }
+    } else {
+      console.log('error submit!', fields)
+    }
+  })
 }
-const router = useRouter()
 // 忘记密码
 const toPsw = () => {
   router.push('/forgetPassword')

@@ -6,7 +6,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Login',
     meta: {
       title: '登录',
-      keepAlive: true,
       requireAuth: false
     },
     component: () => import('@/view/login/login.vue')
@@ -16,7 +15,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'ForgetPassword',
     meta: {
       title: '忘记密码',
-      keepAlive: true,
       requireAuth: false
     },
     component: () => import('@/view/login/forgetPassword.vue')
@@ -26,20 +24,25 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Register',
     meta: {
       title: '注册',
-      keepAlive: true,
       requireAuth: false
     },
     component: () => import('@/view/login/register.vue')
   },
   {
     path: '/',
-    name: 'Index',
-    meta: {
-      title: '首页',
-      keepAlive: true,
-      requireAuth: false
-    },
-    component: () => import('@/view/home.vue')
+    name: 'Layout',
+    component: () => import('@/layout/index.vue'),
+    children: [
+      {
+        path: '/dashboard',
+        name: 'Dashboard',
+        meta: {
+          title: '注册',
+          requireAuth: false
+        },
+        component: () => import('@/view/dashboard.vue')
+      }
+    ]
   },
   {
     path: '/:pathMath(.*)*',
