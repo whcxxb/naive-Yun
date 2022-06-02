@@ -30,10 +30,10 @@ import {
   Message,
   Download
 } from '@element-plus/icons-vue'
-import { ref } from 'vue'
+import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-const menus = ref([
+const menus = reactive([
   { id: '1', name: '仪表盘', path: '/dashboard', icon: Monitor },
   { id: '2', name: '使用文档', path: '/doucment', icon: Opportunity },
   { id: '3', name: '节点列表', path: '/dingyue', icon: Grid },

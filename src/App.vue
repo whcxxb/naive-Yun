@@ -1,4 +1,8 @@
 <template>
+  <!-- <el-scrollbar :always="true">
+    <RouterView />
+  </el-scrollbar> -->
+
   <RouterView />
 </template>
 <script setup lang="ts">
