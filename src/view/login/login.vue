@@ -40,18 +40,18 @@
 
 <script lang="ts" setup>
 import { ElMessage } from 'element-plus'
-
 import { Unlock, Message } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import dynamicUser from '@/utils/mock'
 const router = useRouter()
 // from表单组件
 const ruleFormRef = ref<FormInstance>()
 // 表单信息
 const formInline = reactive({
   userName: 'admin',
-  password: '123',
+  password: '123456',
   isPsw: false
 })
 // 验证规则
@@ -63,14 +63,20 @@ const rules = reactive<FormRules>({
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return
   formEl.validate((valid, fields) => {
+    let flag = !1
     if (valid) {
-      if (formInline.userName === 'admin' && formInline.password === '123') {
-        ElMessage.success('登录成功')
-        router.replace({
-          path: '/'
-        })
-      } else {
-        ElMessage.success('错误')
+      dynamicUser.map((item) => {
+        if (item.username === formInline.userName && item.password === formInline.password) {
+          flag = !0
+          ElMessage.success('登录成功')
+          window.localStorage.setItem('userInfo', JSON.stringify(item))
+          router.replace({
+            path: '/'
+          })
+        }
+      })
+      if (!flag) {
+        ElMessage.warning('账号或者密码错误')
       }
     } else {
       console.log('error submit!', fields)

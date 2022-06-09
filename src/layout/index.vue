@@ -6,15 +6,12 @@
     </el-aside>
     <!-- 右侧内容区域 -->
     <el-container class="container-right">
-      <el-scrollbar :always="true">
-        <!-- 头部 -->
-        <el-header style="padding: 0">
+      <el-main style="padding: 0">
+        <el-scrollbar :always="true">
           <headerTem></headerTem>
-        </el-header>
-        <el-main style="padding: 0">
           <appMain></appMain>
-        </el-main>
-      </el-scrollbar>
+        </el-scrollbar>
+      </el-main>
     </el-container>
   </el-container>
 </template>

@@ -30,12 +30,12 @@ import {
   Message,
   Download
 } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import { reactive, markRaw } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 const menus = reactive([
-  { id: '1', name: '仪表盘', path: '/dashboard', icon: Monitor },
-  { id: '2', name: '使用文档', path: '/doucment', icon: Opportunity },
+  { id: '1', name: '仪表盘', path: '/dashboard', icon: markRaw(Monitor) },
+  { id: '2', name: '使用文档', path: '/doc', icon: markRaw(Opportunity) },
   { id: '3', name: '节点列表', path: '/dingyue', icon: Grid },
   { id: '4', name: '购买订阅', path: '/dashboard', icon: ShoppingBag },
   { id: '5', name: '我的订单', path: '/doucment', icon: List },
@@ -67,10 +67,5 @@ const toPage = (path: string) => {
       color: #555 !important;
     }
   }
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
 }
 </style>

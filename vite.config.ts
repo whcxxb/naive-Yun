@@ -20,10 +20,11 @@ export default defineConfig({
     //设置别名
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    },
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
   server: {
-    port: 8080, //启动端口
+    port: 8080 //启动端口
     // 设置 https 代理
   }
 })

@@ -8,7 +8,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '登录',
       requireAuth: false
     },
-    component: () => import('@/view/login/login.vue')
+    component: () => import('../view/login/login.vue')
   },
   {
     path: '/forgetPassword',
@@ -28,22 +28,32 @@ const routes: Array<RouteRecordRaw> = [
     },
     component: () => import('@/view/login/register.vue')
   },
-  {
-    path: '/',
-    name: 'Layout',
-    component: () => import('@/layout/index.vue'),
-    children: [
-      {
-        path: '/dashboard',
-        name: 'Dashboard',
-        meta: {
-          title: '注册',
-          requireAuth: false
-        },
-        component: () => import('@/view/dashboard.vue')
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   name: 'Layout',
+  //   redirect: '/dashboard',
+  //   component: () => import('@/layout/index.vue'),
+  //   children: [
+  //     {
+  //       path: '/dashboard',
+  //       name: 'Dashboard',
+  //       meta: {
+  //         title: '首页',
+  //         requireAuth: false
+  //       },
+  //       component: () => import('@/view/dashboard.vue')
+  //     },
+  //     {
+  //       path: '/doc',
+  //       name: 'doc',
+  //       meta: {
+  //         title: '帮助文档',
+  //         requireAuth: false
+  //       },
+  //       component: () => import('@/view/doc.vue')
+  //     }
+  //   ]
+  // },
   {
     path: '/:pathMath(.*)*',
     name: '404',

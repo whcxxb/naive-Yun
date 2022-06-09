@@ -11,6 +11,7 @@
 .nav {
   display: flex;
   justify-content: space-between;
+  padding: 0 30px;
   line-height: 60px;
   background: linear-gradient(90deg, #18a058, #2dce89) !important;
   color: #fff !important;
