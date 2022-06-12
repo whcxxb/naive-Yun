@@ -12,28 +12,29 @@ const dynamicUser = [
         id: 1,
         name: '/',
         path: '/',
-        icon: 'Opportunity',
+        icon: 'Monitor',
+        dicName: '首页',
         component: 'layout',
         redirect: '/dashboard',
-        hidden: false,
-        children: [{ name: 'Dashboard', path: '/dashboard', meta: { title: '首页' }, component: 'dashboard' }]
+        children: [{ name: 'dashboard', path: '/dashboard', meta: { title: '首页' }, component: 'dashboard' }]
       },
       {
         id: 2,
         name: 'doc',
         path: '/doc',
         icon: 'Opportunity',
+        dicName: '帮助文档',
         component: 'layout',
         children: [{ name: 'doc', path: '/doc', meta: { title: '帮助文档' }, component: 'doc' }]
       },
       {
         id: 3,
         name: 'user',
-        path: '/form',
-        component: 'Layout',
-        redirect: '/form/index',
-        hidden: false,
-        children: [{ name: '/form/index', path: '/form/index', meta: { title: 'form' }, component: 'form/index' }]
+        path: '/user',
+        icon: 'Grid',
+        dicName: '用户管理',
+        component: 'layout',
+        children: [{ name: 'user', path: '/user', meta: { title: '用户管理' }, component: 'user' }]
       }
     ]
   },
@@ -42,7 +43,7 @@ const dynamicUser = [
     name: '普通用户',
     avatar: 'https://sf1-ttcdn-tos.pstatp.com/img/user-avatar/6364348965908f03e6a2dd188816e927~300x300.image',
     desc: '普通用户 - people',
-    username: 'people',
+    username: 'putong',
     password: '123456',
     token: '4es8eyDwznXrCX3b3439EmTFnIkrBYWh',
     routes: [
@@ -50,17 +51,20 @@ const dynamicUser = [
         id: 1,
         name: '/',
         path: '/',
-        component: 'Layout',
-        redirect: '/index',
-        hidden: false,
-        children: [{ name: 'index', path: '/index', meta: { title: 'index' }, component: 'index/index' }]
+        icon: 'Monitor',
+        dicName: '首页',
+        component: 'layout',
+        redirect: '/dashboard',
+        children: [{ name: 'dashboard', path: '/dashboard', meta: { title: '首页' }, component: 'dashboard' }]
       },
       {
         id: 2,
         name: 'doc',
         path: '/doc',
-        component: 'Layout',
-        redirect: '/doc'
+        icon: 'Opportunity',
+        dicName: '帮助文档',
+        component: 'layout',
+        children: [{ name: 'doc', path: '/doc', meta: { title: '帮助文档' }, component: 'doc' }]
       }
     ]
   }

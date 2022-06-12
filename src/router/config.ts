@@ -1,7 +1,5 @@
-import { defineAsyncComponent } from 'vue'
 import router from './index'
-// vue3 + vite 必须这样引入组件才不报错
-const layout = () => defineAsyncComponent(() => import(/* @vite-ignore */ '@/layout/index.vue'))
+const layout = () => import(/* @vite-ignores */ '../layout/index.vue')
 import NProgress from 'nprogress'
 NProgress.configure({ showSpinner: false })
 // 需要过滤的路由
@@ -37,7 +35,11 @@ router.afterEach(() => {
 })
 // 路由拼接
 function loadView(view: string) {
-  return () => defineAsyncComponent(() => import(/* @vite-ignore */ `../view/${view}.vue`))
+  // new Promise((resolve, reject) => {
+  //   resolve(...)
+  // })
+  // () => import(/* @vite-ignore */ `../view/${view}.vue`)
+  return () => import(`../view/${view}.vue`)
 }
 // 路由过滤和跳转
 const onFilterRoutes = async (to: any, next: any, e: []) => {
@@ -48,7 +50,6 @@ const onFilterRoutes = async (to: any, next: any, e: []) => {
     router.options.routes.push(item)
     router.addRoute(item)
   })
-  console.log('获取to', to)
   next({
     path: to.path
   })
